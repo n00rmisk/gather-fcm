@@ -14,7 +14,17 @@ if (!admin.apps.length) {
     }),
   });
 }
+const corsHeaders = {
+    'Access-Control-Allow-Origin': 'http://localhost:3000', 
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+  
 
+  //    Handle preflight OPTIONS request
+export async function OPTIONS(request: NextRequest) {
+    return new NextResponse(null, { headers: corsHeaders });
+  }
 const db = admin.firestore();
 
 export async function POST(request: NextRequest) {
